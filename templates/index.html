@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recent POST requests</title>
+    <style type="text/css">
+        table, th, td {
+            border: 2px solid gray;
+            border-collapse: collapse;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Recent POST requests</h1>
+
+    {% for post in posts %}
+    <div>
+        <hr/>
+        <p>At {{ post['timestamp'] }}:</p>
+
+        <table>
+            <tr>
+                <th>Content Type</th>
+                <td>{{ post['content_type'] }}
+            </tr>
+            <tr>
+                <th>Headers</th>
+                <td>
+                    <ul>
+                    {% for header in post['headers'] %}
+                        <li>{{ header }}</li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Body</th>
+                <td>{{ post['body'] }}</td>
+            </tr>
+        </table>
+    </div>
+    {% endfor %}
+
+    <hr/>
+</body>
+</html>
